@@ -5,11 +5,11 @@ import {
   createIntl,
   IntlShape,
   MessageDescriptor,
-} from '/Users/apple/Desktop/my-app/node_modules/react-intl';
+} from '/Users/apple/Desktop/blog/node_modules/react-intl';
 import { getPluginManager } from '../core/plugin';
-import EventEmitter from '/Users/apple/Desktop/my-app/node_modules/event-emitter';
+import EventEmitter from '/Users/apple/Desktop/blog/node_modules/event-emitter';
 // @ts-ignore
-import warning from '/Users/apple/Desktop/my-app/node_modules/@umijs/plugins/node_modules/warning';
+import warning from '/Users/apple/Desktop/blog/node_modules/@umijs/plugins/node_modules/warning';
 
 export {
   createIntl,
@@ -34,7 +34,7 @@ export {
   defineMessages,
   injectIntl,
   useIntl,
-} from '/Users/apple/Desktop/my-app/node_modules/react-intl';
+} from '/Users/apple/Desktop/blog/node_modules/react-intl';
 
 let g_intl: IntlShape;
 
@@ -45,22 +45,6 @@ export const event = new EventEmitter();
 
 export const LANG_CHANGE_EVENT = Symbol('LANG_CHANGE');
 
-import bnBD0 from 'antd/es/locale/bn_BD';
-import lang_bnBD0 from "/Users/apple/Desktop/my-app/src/locales/bn-BD.ts";
-import enUS0 from 'antd/es/locale/en_US';
-import lang_enUS0 from "/Users/apple/Desktop/my-app/src/locales/en-US.ts";
-import faIR0 from 'antd/es/locale/fa_IR';
-import lang_faIR0 from "/Users/apple/Desktop/my-app/src/locales/fa-IR.ts";
-import idID0 from 'antd/es/locale/id_ID';
-import lang_idID0 from "/Users/apple/Desktop/my-app/src/locales/id-ID.ts";
-import jaJP0 from 'antd/es/locale/ja_JP';
-import lang_jaJP0 from "/Users/apple/Desktop/my-app/src/locales/ja-JP.ts";
-import ptBR0 from 'antd/es/locale/pt_BR';
-import lang_ptBR0 from "/Users/apple/Desktop/my-app/src/locales/pt-BR.ts";
-import zhCN0 from 'antd/es/locale/zh_CN';
-import lang_zhCN0 from "/Users/apple/Desktop/my-app/src/locales/zh-CN.ts";
-import zhTW0 from 'antd/es/locale/zh_TW';
-import lang_zhTW0 from "/Users/apple/Desktop/my-app/src/locales/zh-TW.ts";
 
 const flattenMessages=(
   nestedMessages: Record<string, any>,
@@ -82,86 +66,6 @@ const flattenMessages=(
 }
 
 export const localeInfo: {[key: string]: any} = {
-  'bn-BD': {
-    messages: {
-      ...flattenMessages(lang_bnBD0),
-    },
-    locale: 'bn-BD',
-    antd: {
-      ...bnBD0,
-    },
-    momentLocale: 'bn-bd',
-  },
-  'en-US': {
-    messages: {
-      ...flattenMessages(lang_enUS0),
-    },
-    locale: 'en-US',
-    antd: {
-      ...enUS0,
-    },
-    momentLocale: 'en',
-  },
-  'fa-IR': {
-    messages: {
-      ...flattenMessages(lang_faIR0),
-    },
-    locale: 'fa-IR',
-    antd: {
-      ...faIR0,
-    },
-    momentLocale: 'fa',
-  },
-  'id-ID': {
-    messages: {
-      ...flattenMessages(lang_idID0),
-    },
-    locale: 'id-ID',
-    antd: {
-      ...idID0,
-    },
-    momentLocale: 'id',
-  },
-  'ja-JP': {
-    messages: {
-      ...flattenMessages(lang_jaJP0),
-    },
-    locale: 'ja-JP',
-    antd: {
-      ...jaJP0,
-    },
-    momentLocale: 'ja',
-  },
-  'pt-BR': {
-    messages: {
-      ...flattenMessages(lang_ptBR0),
-    },
-    locale: 'pt-BR',
-    antd: {
-      ...ptBR0,
-    },
-    momentLocale: 'pt-br',
-  },
-  'zh-CN': {
-    messages: {
-      ...flattenMessages(lang_zhCN0),
-    },
-    locale: 'zh-CN',
-    antd: {
-      ...zhCN0,
-    },
-    momentLocale: 'zh-cn',
-  },
-  'zh-TW': {
-    messages: {
-      ...flattenMessages(lang_zhTW0),
-    },
-    locale: 'zh-TW',
-    antd: {
-      ...zhTW0,
-    },
-    momentLocale: 'zh-tw',
-  },
 };
 
 /**
@@ -232,11 +136,6 @@ export const getIntl = (locale?: string, changeIntl?: boolean) => {
   if (locale&&localeInfo[locale]) {
     return _createIntl(locale);
   }
-  // 不存在需要一个报错提醒
-  warning(
-    !locale||!!localeInfo[locale],
-    `The current popular language does not exist, please check the locales folder!`,
-  );
   // 使用 zh-CN
   if (localeInfo["zh-CN"]) {
     return _createIntl("zh-CN");

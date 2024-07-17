@@ -6,8 +6,8 @@ import axios, {
   type AxiosRequestConfig,
   type AxiosResponse,
   type AxiosError,
-} from '/Users/apple/Desktop/my-app/node_modules/axios';
-import useUmiRequest, { UseRequestProvider } from '/Users/apple/Desktop/my-app/node_modules/@ahooksjs/use-request';
+} from '/Users/apple/Desktop/blog/node_modules/axios';
+import useUmiRequest, { UseRequestProvider } from '/Users/apple/Desktop/blog/node_modules/@ahooksjs/use-request';
 import { ApplyPluginsType } from 'umi';
 import { getPluginManager } from '../core/plugin';
 
@@ -26,7 +26,7 @@ import {
   PaginatedOptionsWithFormat,
   PaginatedParams,
   PaginatedResult,
-} from '/Users/apple/Desktop/my-app/node_modules/@ahooksjs/use-request/es/types';
+} from '/Users/apple/Desktop/blog/node_modules/@ahooksjs/use-request/es/types';
 
 type ResultWithData< T = any > = { data?: T; [key: string]: any };
 

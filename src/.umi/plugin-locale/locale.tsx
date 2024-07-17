@@ -4,24 +4,18 @@
 import React from 'react';
 import { ConfigProvider } from 'antd';
 
-import moment from '/Users/apple/Desktop/my-app/node_modules/dayjs';
-import '/Users/apple/Desktop/my-app/node_modules/dayjs/locale/bn-bd';
-import '/Users/apple/Desktop/my-app/node_modules/dayjs/locale/en';
-import '/Users/apple/Desktop/my-app/node_modules/dayjs/locale/fa';
-import '/Users/apple/Desktop/my-app/node_modules/dayjs/locale/id';
-import '/Users/apple/Desktop/my-app/node_modules/dayjs/locale/ja';
-import '/Users/apple/Desktop/my-app/node_modules/dayjs/locale/pt-br';
-import '/Users/apple/Desktop/my-app/node_modules/dayjs/locale/zh-cn';
-import '/Users/apple/Desktop/my-app/node_modules/dayjs/locale/zh-tw';
+import moment from '/Users/apple/Desktop/blog/node_modules/dayjs';
+import '/Users/apple/Desktop/blog/node_modules/dayjs/locale/zh-cn';
 import { RawIntlProvider, getLocale, getDirection , setIntl, getIntl, localeInfo, event, LANG_CHANGE_EVENT } from './localeExports';
 
+import antd_es_locale_zh_CN from 'antd/es/locale/zh_CN';
 
 
 
 export function _onCreate() {
   const locale = getLocale();
   if (moment?.locale) {
-    moment.locale(localeInfo[locale]?.momentLocale || '');
+    moment.locale(localeInfo[locale]?.momentLocale || 'zh-cn');
   }
   setIntl(locale);
 }
@@ -54,6 +48,7 @@ export const _LocaleContainer = (props:any) => {
   }, []);
 
   const defaultAntdLocale = {
+    ...antd_es_locale_zh_CN,
   }
   const direction = getDirection();
 
