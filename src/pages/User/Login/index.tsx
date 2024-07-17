@@ -8,6 +8,7 @@ import { createStyles } from "antd-style";
 import React, { useState } from "react";
 import { flushSync } from "react-dom";
 import Settings from "../../../../config/defaultSettings";
+
 const useStyles = createStyles(({ token }) => {
   return {
     action: {
@@ -126,7 +127,7 @@ const Login: React.FC = () => {
             maxWidth: "75vw",
           }}
           logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
+          title="博客后台管理系统"
           subTitle={"Ant Design 是西湖区最具影响力的 Web 设计规范"}
           initialValues={{
             autoLogin: true,
@@ -158,7 +159,7 @@ const Login: React.FC = () => {
                   size: "large",
                   prefix: <UserOutlined />,
                 }}
-                placeholder={"用户名: admin or user"}
+                placeholder={"用户名: admin"}
                 rules={[
                   {
                     required: true,
@@ -172,7 +173,7 @@ const Login: React.FC = () => {
                   size: "large",
                   prefix: <LockOutlined />,
                 }}
-                placeholder={"密码: ant.design"}
+                placeholder={"admin"}
                 rules={[
                   {
                     required: true,
@@ -182,11 +183,6 @@ const Login: React.FC = () => {
               />
             </>
           )}
-          <div
-            style={{
-              marginBottom: 24,
-            }}
-          ></div>
         </LoginForm>
       </div>
       <Footer />
