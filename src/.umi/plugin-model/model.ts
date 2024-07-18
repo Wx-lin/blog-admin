@@ -4,5 +4,5 @@
 import model_1 from '/Users/apple/Desktop/blog/src/.umi/plugin-initialState/@@initialState';
 
 export const models = {
-model_1: { namespace: '@@initialState', model: model_1 },
-} as const
+  model_1: { namespace: '@@initialState', model: model_1 }
+} as const;

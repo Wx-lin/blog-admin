@@ -8,7 +8,7 @@ enum ErrorShowType {
   WARN_MESSAGE = 1,
   ERROR_MESSAGE = 2,
   NOTIFICATION = 3,
-  REDIRECT = 9,
+  REDIRECT = 9
 }
 // 与后端约定的响应数据格式
 interface ResponseStructure {
@@ -59,7 +59,7 @@ export const errorConfig: RequestConfig = {
             case ErrorShowType.NOTIFICATION:
               notification.open({
                 description: errorMessage,
-                message: errorCode,
+                message: errorCode
               });
               break;
             case ErrorShowType.REDIRECT:
@@ -82,7 +82,7 @@ export const errorConfig: RequestConfig = {
         // 发送请求时出了点问题
         message.error('Request error, please retry.');
       }
-    },
+    }
   },
 
   // 请求拦截器
@@ -91,7 +91,7 @@ export const errorConfig: RequestConfig = {
       // 拦截请求配置，进行个性化处理。
       const url = config?.url?.concat('?token = 123');
       return { ...config, url };
-    },
+    }
   ],
 
   // 响应拦截器
@@ -104,6 +104,6 @@ export const errorConfig: RequestConfig = {
         message.error('请求失败！');
       }
       return response;
-    },
-  ],
+    }
+  ]
 };

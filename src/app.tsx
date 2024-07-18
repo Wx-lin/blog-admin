@@ -22,7 +22,7 @@ export async function getInitialState(): Promise<{
   const fetchUserInfo = async () => {
     try {
       const msg = await queryCurrentUser({
-        skipErrorHandler: true,
+        skipErrorHandler: true
       });
       return msg.data;
     } catch (error) {
@@ -37,12 +37,12 @@ export async function getInitialState(): Promise<{
     return {
       fetchUserInfo,
       currentUser,
-      settings: defaultSettings as Partial<LayoutSettings>,
+      settings: defaultSettings as Partial<LayoutSettings>
     };
   }
   return {
     fetchUserInfo,
-    settings: defaultSettings as Partial<LayoutSettings>,
+    settings: defaultSettings as Partial<LayoutSettings>
   };
 }
 
@@ -55,10 +55,10 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       title: <AvatarName />,
       render: (_, avatarChildren) => {
         return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
-      },
+      }
     },
     waterMarkProps: {
-      content: initialState?.currentUser?.name,
+      content: initialState?.currentUser?.name
     },
     footerRender: () => <Footer />,
     onPageChange: () => {
@@ -73,27 +73,27 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/D2LWSqNny4sAAAAAAAAAAAAAFl94AQBr',
         left: 85,
         bottom: 100,
-        height: '303px',
+        height: '303px'
       },
       {
         src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/C2TWRpJpiC0AAAAAAAAAAAAAFl94AQBr',
         bottom: -68,
         right: -45,
-        height: '303px',
+        height: '303px'
       },
       {
         src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/F6vSTbj8KpYAAAAAAAAAAAAAFl94AQBr',
         bottom: 0,
         left: 0,
-        width: '331px',
-      },
+        width: '331px'
+      }
     ],
     links: isDev
       ? [
           <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
             <LinkOutlined />
             <span>OpenAPI 文档</span>
-          </Link>,
+          </Link>
         ]
       : [],
     menuHeaderRender: undefined,
@@ -113,7 +113,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
               onSettingChange={(settings) => {
                 setInitialState((preInitialState) => ({
                   ...preInitialState,
-                  settings,
+                  settings
                 }));
               }}
             />
@@ -121,7 +121,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         </>
       );
     },
-    ...initialState?.settings,
+    ...initialState?.settings
   };
 };
 
@@ -131,5 +131,5 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request = {
-  ...errorConfig,
+  ...errorConfig
 };

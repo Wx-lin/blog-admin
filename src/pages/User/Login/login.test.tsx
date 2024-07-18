@@ -5,7 +5,7 @@ import { TestBrowser } from '@@/testBrowser';
 // @ts-ignore
 import { startMock } from '@@/requestRecordMock';
 
-const waitTime = (time: number = 100) => {
+const waitTime = (time = 100) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(true);
@@ -21,7 +21,7 @@ describe('Login Page', () => {
   beforeAll(async () => {
     server = await startMock({
       port: 8000,
-      scene: 'login',
+      scene: 'login'
     });
   });
 
@@ -35,9 +35,9 @@ describe('Login Page', () => {
       <TestBrowser
         historyRef={historyRef}
         location={{
-          pathname: '/user/login',
+          pathname: '/user/login'
         }}
-      />,
+      />
     );
 
     await rootContainer.findAllByText('Ant Design');
@@ -47,7 +47,7 @@ describe('Login Page', () => {
     });
 
     expect(rootContainer.baseElement?.querySelector('.ant-pro-form-login-desc')?.textContent).toBe(
-      'Ant Design is the most influential web design specification in Xihu district',
+      'Ant Design is the most influential web design specification in Xihu district'
     );
 
     expect(rootContainer.asFragment()).toMatchSnapshot();
@@ -61,9 +61,9 @@ describe('Login Page', () => {
       <TestBrowser
         historyRef={historyRef}
         location={{
-          pathname: '/user/login',
+          pathname: '/user/login'
         }}
-      />,
+      />
     );
 
     await rootContainer.findAllByText('Ant Design');

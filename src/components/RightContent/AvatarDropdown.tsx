@@ -32,9 +32,9 @@ const useStyles = createStyles(({ token }) => {
       cursor: 'pointer',
       borderRadius: token.borderRadius,
       '&:hover': {
-        backgroundColor: token.colorBgTextHover,
-      },
-    },
+        backgroundColor: token.colorBgTextHover
+      }
+    }
   };
 });
 
@@ -53,8 +53,8 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
       history.replace({
         pathname: '/user/login',
         search: stringify({
-          redirect: pathname + search,
-        }),
+          redirect: pathname + search
+        })
       });
     }
   };
@@ -74,7 +74,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
       }
       history.push(`/account/${key}`);
     },
-    [setInitialState],
+    [setInitialState]
   );
 
   const loading = (
@@ -83,7 +83,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
         size="small"
         style={{
           marginLeft: 8,
-          marginRight: 8,
+          marginRight: 8
         }}
       />
     </span>
@@ -105,23 +105,23 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
           {
             key: 'center',
             icon: <UserOutlined />,
-            label: '个人中心',
+            label: '个人中心'
           },
           {
             key: 'settings',
             icon: <SettingOutlined />,
-            label: '个人设置',
+            label: '个人设置'
           },
           {
-            type: 'divider' as const,
-          },
+            type: 'divider' as const
+          }
         ]
       : []),
     {
       key: 'logout',
       icon: <LogoutOutlined />,
-      label: '退出登录',
-    },
+      label: '退出登录'
+    }
   ];
 
   return (
@@ -129,9 +129,8 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
       menu={{
         selectedKeys: [],
         onClick: onMenuClick,
-        items: menuItems,
-      }}
-    >
+        items: menuItems
+      }}>
       {children}
     </HeaderDropdown>
   );

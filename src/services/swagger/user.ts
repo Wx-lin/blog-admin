@@ -7,7 +7,7 @@ export async function createUser(body: API.User, options?: { [key: string]: any 
   return request<any>('/user', {
     method: 'POST',
     data: body,
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -15,13 +15,13 @@ export async function createUser(body: API.User, options?: { [key: string]: any 
 export async function getUserByName(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getUserByNameParams,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   const { username: param0, ...queryParams } = params;
   return request<API.User>(`/user/${param0}`, {
     method: 'GET',
     params: { ...queryParams },
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -30,14 +30,14 @@ export async function updateUser(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.updateUserParams,
   body: API.User,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   const { username: param0, ...queryParams } = params;
   return request<any>(`/user/${param0}`, {
     method: 'PUT',
     params: { ...queryParams },
     data: body,
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -45,25 +45,25 @@ export async function updateUser(
 export async function deleteUser(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.deleteUserParams,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   const { username: param0, ...queryParams } = params;
   return request<any>(`/user/${param0}`, {
     method: 'DELETE',
     params: { ...queryParams },
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
 /** Creates list of users with given input array POST /user/createWithArray */
 export async function createUsersWithArrayInput(
   body: API.User[],
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   return request<any>('/user/createWithArray', {
     method: 'POST',
     data: body,
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -72,7 +72,7 @@ export async function createUsersWithListInput(body: API.User[], options?: { [ke
   return request<any>('/user/createWithList', {
     method: 'POST',
     data: body,
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -80,14 +80,14 @@ export async function createUsersWithListInput(body: API.User[], options?: { [ke
 export async function loginUser(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.loginUserParams,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   return request<string>('/user/login', {
     method: 'GET',
     params: {
-      ...params,
+      ...params
     },
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -95,6 +95,6 @@ export async function loginUser(
 export async function logoutUser(options?: { [key: string]: any }) {
   return request<any>('/user/logout', {
     method: 'GET',
-    ...(options || {}),
+    ...(options || {})
   });
 }

@@ -9,9 +9,9 @@ import * as Plugin_4 from '/Users/apple/Desktop/blog/src/.umi/plugin-layout/runt
 import * as Plugin_5 from '/Users/apple/Desktop/blog/src/.umi/plugin-model/runtime.tsx';
 import { PluginManager } from 'umi';
 
-function __defaultExport (obj) {
+function __defaultExport(obj) {
   if (obj.default) {
-    return typeof obj.default === 'function' ? obj.default() :  obj.default
+    return typeof obj.default === 'function' ? obj.default() : obj.default;
   }
   return obj;
 }
@@ -19,33 +19,63 @@ export function getPlugins() {
   return [
     {
       apply: __defaultExport(Plugin_0),
-      path: process.env.NODE_ENV === 'production' ? void 0 : '/Users/apple/Desktop/blog/src/app.tsx',
+      path: process.env.NODE_ENV === 'production' ? void 0 : '/Users/apple/Desktop/blog/src/app.tsx'
     },
     {
       apply: Plugin_1,
-      path: process.env.NODE_ENV === 'production' ? void 0 : '@@/core/helmet.ts',
+      path: process.env.NODE_ENV === 'production' ? void 0 : '@@/core/helmet.ts'
     },
     {
       apply: Plugin_2,
-      path: process.env.NODE_ENV === 'production' ? void 0 : '/Users/apple/Desktop/blog/src/.umi/plugin-access/runtime.tsx',
+      path:
+        process.env.NODE_ENV === 'production'
+          ? void 0
+          : '/Users/apple/Desktop/blog/src/.umi/plugin-access/runtime.tsx'
     },
     {
       apply: Plugin_3,
-      path: process.env.NODE_ENV === 'production' ? void 0 : '/Users/apple/Desktop/blog/src/.umi/plugin-initialState/runtime.tsx',
+      path:
+        process.env.NODE_ENV === 'production'
+          ? void 0
+          : '/Users/apple/Desktop/blog/src/.umi/plugin-initialState/runtime.tsx'
     },
     {
       apply: Plugin_4,
-      path: process.env.NODE_ENV === 'production' ? void 0 : '/Users/apple/Desktop/blog/src/.umi/plugin-layout/runtime.tsx',
+      path:
+        process.env.NODE_ENV === 'production'
+          ? void 0
+          : '/Users/apple/Desktop/blog/src/.umi/plugin-layout/runtime.tsx'
     },
     {
       apply: Plugin_5,
-      path: process.env.NODE_ENV === 'production' ? void 0 : '/Users/apple/Desktop/blog/src/.umi/plugin-model/runtime.tsx',
-    },
+      path:
+        process.env.NODE_ENV === 'production'
+          ? void 0
+          : '/Users/apple/Desktop/blog/src/.umi/plugin-model/runtime.tsx'
+    }
   ];
 }
 
 export function getValidKeys() {
-  return ['patchRoutes','patchClientRoutes','modifyContextOpts','modifyClientRenderOpts','rootContainer','innerProvider','i18nProvider','accessProvider','dataflowProvider','outerProvider','render','onRouteChange','antd','getInitialState','layout','qiankun','request',];
+  return [
+    'patchRoutes',
+    'patchClientRoutes',
+    'modifyContextOpts',
+    'modifyClientRenderOpts',
+    'rootContainer',
+    'innerProvider',
+    'i18nProvider',
+    'accessProvider',
+    'dataflowProvider',
+    'outerProvider',
+    'render',
+    'onRouteChange',
+    'antd',
+    'getInitialState',
+    'layout',
+    'qiankun',
+    'request'
+  ];
 }
 
 let pluginManager = null;
@@ -53,9 +83,8 @@ let pluginManager = null;
 export function createPluginManager() {
   pluginManager = PluginManager.create({
     plugins: getPlugins(),
-    validKeys: getValidKeys(),
+    validKeys: getValidKeys()
   });
-
 
   return pluginManager;
 }

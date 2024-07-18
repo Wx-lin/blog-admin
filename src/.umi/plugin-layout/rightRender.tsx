@@ -5,60 +5,60 @@ import React from 'react';
 import { Avatar, version, Dropdown, Menu, Spin } from 'antd';
 import { LogoutOutlined } from '/Users/apple/Desktop/blog/node_modules/@ant-design/icons';
 
-export function getRightRenderContent (opts: {
-   runtimeConfig: any,
-   loading: boolean,
-   initialState: any,
-   setInitialState: any,
- }) {
+export function getRightRenderContent(opts: {
+  runtimeConfig: any;
+  loading: boolean;
+  initialState: any;
+  setInitialState: any;
+}) {
   if (opts.runtimeConfig.rightRender) {
     return opts.runtimeConfig.rightRender(
       opts.initialState,
       opts.setInitialState,
-      opts.runtimeConfig,
+      opts.runtimeConfig
     );
   }
 
-  const showAvatar = opts.initialState?.avatar || opts.initialState?.name || opts.runtimeConfig.logout;
+  const showAvatar =
+    opts.initialState?.avatar || opts.initialState?.name || opts.runtimeConfig.logout;
   const disableAvatarImg = opts.initialState?.avatar === false;
-  const nameClassName = disableAvatarImg ? 'umi-plugin-layout-name umi-plugin-layout-hide-avatar-img' : 'umi-plugin-layout-name';
-  const avatar =
-    showAvatar ? (
-      <span className="umi-plugin-layout-action">
-        {!disableAvatarImg ?
-          (
-            <Avatar
-              size="small"
-              className="umi-plugin-layout-avatar"
-              src={
-                opts.initialState?.avatar ||
-                "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"
-              }
-              alt="avatar"
-            />
-          ) : null}
-        <span className={nameClassName}>{opts.initialState?.name}</span>
-      </span>
-    ) : null;
-
+  const nameClassName = disableAvatarImg
+    ? 'umi-plugin-layout-name umi-plugin-layout-hide-avatar-img'
+    : 'umi-plugin-layout-name';
+  const avatar = showAvatar ? (
+    <span className="umi-plugin-layout-action">
+      {!disableAvatarImg ? (
+        <Avatar
+          size="small"
+          className="umi-plugin-layout-avatar"
+          src={
+            opts.initialState?.avatar ||
+            'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
+          }
+          alt="avatar"
+        />
+      ) : null}
+      <span className={nameClassName}>{opts.initialState?.name}</span>
+    </span>
+  ) : null;
 
   if (opts.loading) {
     return (
       <div className="umi-plugin-layout-right">
-        <Spin size="small" style={ { marginLeft: 8, marginRight: 8 } } />
+        <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
       </div>
     );
   }
 
   // 如果没有打开Locale，并且头像为空就取消掉这个返回的内容
-    if(!avatar) return null;
+  if (!avatar) return null;
 
   const langMenu = {
-    className: "umi-plugin-layout-menu",
+    className: 'umi-plugin-layout-menu',
     selectedKeys: [],
     items: [
       {
-        key: "logout",
+        key: 'logout',
         label: (
           <>
             <LogoutOutlined />
@@ -67,15 +67,15 @@ export function getRightRenderContent (opts: {
         ),
         onClick: () => {
           opts?.runtimeConfig?.logout?.(opts.initialState);
-        },
-      },
-    ],
+        }
+      }
+    ]
   };
   // antd@5 和  4.24 之后推荐使用 menu，性能更好
   let dropdownProps;
-  if (version.startsWith("5.") || version.startsWith("4.24.")) {
+  if (version.startsWith('5.') || version.startsWith('4.24.')) {
     dropdownProps = { menu: langMenu };
-  } else if (version.startsWith("3.")) {
+  } else if (version.startsWith('3.')) {
     dropdownProps = {
       overlay: (
         <Menu>
@@ -85,13 +85,12 @@ export function getRightRenderContent (opts: {
             </Menu.Item>
           ))}
         </Menu>
-      ),
+      )
     };
-  } else { // 需要 antd 4.20.0 以上版本
+  } else {
+    // 需要 antd 4.20.0 以上版本
     dropdownProps = { overlay: <Menu {...langMenu} /> };
   }
-
-
 
   return (
     <div className="umi-plugin-layout-right anticon">

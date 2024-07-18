@@ -46,9 +46,9 @@ if (pwa) {
         };
         worker.postMessage(
           {
-            type: 'skip-waiting',
+            type: 'skip-waiting'
           },
-          [channel.port2],
+          [channel.port2]
         );
       });
       clearCache();
@@ -62,8 +62,7 @@ if (pwa) {
         onClick={() => {
           notification.destroy(key);
           reloadSW();
-        }}
-      >
+        }}>
         {'刷新'}
       </Button>
     );
@@ -72,7 +71,7 @@ if (pwa) {
       description: '请点击“刷新”按钮或者手动刷新页面',
       btn,
       key,
-      onClose: async () => null,
+      onClose: async () => null
     });
   });
 } else if ('serviceWorker' in navigator && isHttps) {

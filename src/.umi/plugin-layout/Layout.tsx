@@ -5,13 +5,16 @@
 /// <reference types="antd" />
 
 import {
-  Link, useLocation, useNavigate, Outlet, useAppData, matchRoutes,
+  Link,
+  useLocation,
+  useNavigate,
+  Outlet,
+  useAppData,
+  matchRoutes,
   type IRoute
 } from '@umijs/max';
 import React, { useMemo } from 'react';
-import {
-  ProLayout,
-} from "/Users/apple/Desktop/blog/node_modules/@ant-design/pro-components";
+import { ProLayout } from '/Users/apple/Desktop/blog/node_modules/@ant-design/pro-components';
 import './Layout.css';
 import Logo from './Logo';
 import Exception from './Exception';
@@ -19,19 +22,18 @@ import { getRightRenderContent } from './rightRender';
 import { useModel } from '@@/plugin-model';
 import { useAccessMarkedRoutes } from '@@/plugin-access';
 
-
 // 过滤出需要显示的路由, 这里的filterFn 指 不希望显示的层级
 const filterRoutes = (routes: IRoute[], filterFn: (route: IRoute) => boolean) => {
   if (routes.length === 0) {
-    return []
+    return [];
   }
 
-  let newRoutes = []
+  let newRoutes = [];
   for (const route of routes) {
-    const newRoute = {...route };
+    const newRoute = { ...route };
     if (filterFn(route)) {
       if (Array.isArray(newRoute.routes)) {
-        newRoutes.push(...filterRoutes(newRoute.routes, filterFn))
+        newRoutes.push(...filterRoutes(newRoute.routes, filterFn));
       }
     } else {
       if (Array.isArray(newRoute.children)) {
@@ -43,18 +45,18 @@ const filterRoutes = (routes: IRoute[], filterFn: (route: IRoute) => boolean) =>
   }
 
   return newRoutes;
-}
+};
 
 // 格式化路由 处理因 wrapper 导致的 菜单 path 不一致
 const mapRoutes = (routes: IRoute[]) => {
   if (routes.length === 0) {
-    return []
+    return [];
   }
-  return routes.map(route => {
+  return routes.map((route) => {
     // 需要 copy 一份, 否则会污染原始数据
-    const newRoute = {...route}
+    const newRoute = { ...route };
     if (route.originPath) {
-      newRoute.path = route.originPath
+      newRoute.path = route.originPath;
     }
 
     if (Array.isArray(route.routes)) {
@@ -65,9 +67,9 @@ const mapRoutes = (routes: IRoute[]) => {
       newRoute.children = mapRoutes(route.children);
     }
 
-    return newRoute
-  })
-}
+    return newRoute;
+  });
+};
 
 export default (props: any) => {
   const location = useLocation();
@@ -76,41 +78,46 @@ export default (props: any) => {
   const initialInfo = (useModel && useModel('@@initialState')) || {
     initialState: undefined,
     loading: false,
-    setInitialState: null,
+    setInitialState: null
   };
   const { initialState, loading, setInitialState } = initialInfo;
   const userConfig = {
-  "locale": true,
-  "navTheme": "light",
-  "colorPrimary": "#1890ff",
-  "layout": "mix",
-  "contentWidth": "Fluid",
-  "fixedHeader": false,
-  "fixSiderbar": true,
-  "colorWeak": false,
-  "title": "Ant Design Pro",
-  "pwa": true,
-  "logo": "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
-  "iconfontUrl": "",
-  "token": {}
-};
-const formatMessage = undefined;
+    locale: true,
+    navTheme: 'light',
+    colorPrimary: '#1890ff',
+    layout: 'mix',
+    contentWidth: 'Fluid',
+    fixedHeader: false,
+    fixSiderbar: true,
+    colorWeak: false,
+    title: 'Ant Design Pro',
+    pwa: true,
+    logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    iconfontUrl: '',
+    token: {}
+  };
+  const formatMessage = undefined;
   const runtimeConfig = pluginManager.applyPlugins({
     key: 'layout',
     type: 'modify',
     initialValue: {
       ...initialInfo
-    },
+    }
   });
 
-
   // 现在的 layout 及 wrapper 实现是通过父路由的形式实现的, 会导致路由数据多了冗余层级, proLayout 消费时, 无法正确展示菜单, 这里对冗余数据进行过滤操作
-  const newRoutes = filterRoutes(clientRoutes.filter(route => route.id === 'ant-design-pro-layout'), (route) => {
-    return (!!route.isLayout && route.id !== 'ant-design-pro-layout') || !!route.isWrapper;
-  })
+  const newRoutes = filterRoutes(
+    clientRoutes.filter((route) => route.id === 'ant-design-pro-layout'),
+    (route) => {
+      return (!!route.isLayout && route.id !== 'ant-design-pro-layout') || !!route.isWrapper;
+    }
+  );
   const [route] = useAccessMarkedRoutes(mapRoutes(newRoutes));
 
-  const matchedRoute = useMemo(() => matchRoutes(route.children, location.pathname)?.pop?.()?.route, [location.pathname]);
+  const matchedRoute = useMemo(
+    () => matchRoutes(route.children, location.pathname)?.pop?.()?.route,
+    [location.pathname]
+  );
 
   return (
     <ProLayout
@@ -143,8 +150,8 @@ const formatMessage = undefined;
       }}
       itemRender={(route, _, routes) => {
         const { breadcrumbName, title, path } = route;
-        const label = title || breadcrumbName
-        const last = routes[routes.length - 1]
+        const label = title || breadcrumbName;
+        const last = routes[routes.length - 1];
         if (last) {
           if (last.path === path || last.linkPath === path) {
             return <span>{label}</span>;
@@ -163,7 +170,7 @@ const formatMessage = undefined;
             runtimeConfig,
             loading,
             initialState,
-            setInitialState,
+            setInitialState
           });
           if (runtimeConfig.rightContentRender) {
             return runtimeConfig.rightContentRender(layoutProps, dom, {
@@ -172,25 +179,24 @@ const formatMessage = undefined;
               runtimeConfig,
               loading,
               initialState,
-              setInitialState,
+              setInitialState
             });
           }
           return dom;
         })
-      }
-    >
+      }>
       <Exception
         route={matchedRoute}
         noFound={runtimeConfig?.noFound}
         notFound={runtimeConfig?.notFound}
         unAccessible={runtimeConfig?.unAccessible}
-        noAccessible={runtimeConfig?.noAccessible}
-      >
-        {runtimeConfig.childrenRender
-          ? runtimeConfig.childrenRender(<Outlet />, props)
-          : <Outlet />
-        }
+        noAccessible={runtimeConfig?.noAccessible}>
+        {runtimeConfig.childrenRender ? (
+          runtimeConfig.childrenRender(<Outlet />, props)
+        ) : (
+          <Outlet />
+        )}
       </Exception>
     </ProLayout>
   );
-}
+};

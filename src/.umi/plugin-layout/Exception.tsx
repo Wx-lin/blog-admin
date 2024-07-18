@@ -12,7 +12,7 @@ const Exception: React.FC<{
   noAccessible?: React.ReactNode;
   unAccessible?: React.ReactNode;
   noFound?: React.ReactNode;
-}> = (props) => (
+}> = (props) =>
   // render custom 404
   (!props.route && (props.noFound || props.notFound)) ||
   // render custom 403
@@ -31,7 +31,6 @@ const Exception: React.FC<{
     />
   )) ||
   // normal render
-  props.children
-);
+  props.children;
 
 export default Exception;

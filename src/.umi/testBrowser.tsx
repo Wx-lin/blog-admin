@@ -3,7 +3,10 @@
 // DO NOT CHANGE IT MANUALLY!
 import React, { useEffect, useState } from 'react';
 import { ApplyPluginsType } from 'umi';
-import { renderClient, RenderClientOpts } from '/Users/apple/Desktop/blog/node_modules/@umijs/renderer-react';
+import {
+  renderClient,
+  RenderClientOpts
+} from '/Users/apple/Desktop/blog/node_modules/@umijs/renderer-react';
 import { createHistory } from './core/history';
 import { createPluginManager } from './core/plugin';
 import { getRoutes } from './core/route';
@@ -22,9 +25,7 @@ type TestBrowserProps = {
 
 export function TestBrowser(props: TestBrowserProps) {
   const pluginManager = createPluginManager();
-  const [context, setContext] = useState<RenderClientOpts | undefined>(
-    undefined
-  );
+  const [context, setContext] = useState<RenderClientOpts | undefined>(undefined);
   useEffect(() => {
     const genContext = async () => {
       const { routes, routeComponents } = await getRoutes(pluginManager);
@@ -34,18 +35,18 @@ export function TestBrowser(props: TestBrowserProps) {
         type: ApplyPluginsType.event,
         args: {
           routes,
-          routeComponents,
-        },
+          routeComponents
+        }
       });
       const contextOpts = pluginManager.applyPlugins({
         key: 'modifyContextOpts',
         type: ApplyPluginsType.modify,
-        initialValue: {},
+        initialValue: {}
       });
       const basename = contextOpts.basename || '/';
       const history = createHistory({
         type: 'memory',
-        basename,
+        basename
       });
       const context = {
         routes,
@@ -56,12 +57,12 @@ export function TestBrowser(props: TestBrowserProps) {
         runtimePublicPath,
         history,
         basename,
-        components: true,
+        components: true
       };
       const modifiedContext = pluginManager.applyPlugins({
         key: 'modifyClientRenderOpts',
         type: ApplyPluginsType.modify,
-        initialValue: context,
+        initialValue: context
       });
       return modifiedContext;
     };

@@ -3,7 +3,7 @@
 /* globals workbox */
 workbox.core.setCacheNameDetails({
   prefix: 'antd-pro',
-  suffix: 'v5',
+  suffix: 'v5'
 });
 // Control all opened tabs ASAP
 workbox.clientsClaim();
@@ -34,11 +34,11 @@ workbox.routing.registerRoute(/\/api\//, workbox.strategies.networkFirst());
 /** Handle third party requests */
 workbox.routing.registerRoute(
   /^https:\/\/gw\.alipayobjects\.com\//,
-  workbox.strategies.networkFirst(),
+  workbox.strategies.networkFirst()
 );
 workbox.routing.registerRoute(
   /^https:\/\/cdnjs\.cloudflare\.com\//,
-  workbox.strategies.networkFirst(),
+  workbox.strategies.networkFirst()
 );
 workbox.routing.registerRoute(/\/color.less/, workbox.strategies.networkFirst());
 
@@ -51,15 +51,15 @@ addEventListener('message', (event) => {
       self.skipWaiting().then(
         () => {
           replyPort.postMessage({
-            error: null,
+            error: null
           });
         },
         (error) => {
           replyPort.postMessage({
-            error,
+            error
           });
-        },
-      ),
+        }
+      )
     );
   }
 });

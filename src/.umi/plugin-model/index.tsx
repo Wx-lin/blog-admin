@@ -9,9 +9,7 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 type Models = typeof rawModels;
 
 type GetNamespaces<M> = {
-  [K in keyof M]: M[K] extends { namespace: string }
-    ? M[K]['namespace']
-    : never;
+  [K in keyof M]: M[K] extends { namespace: string } ? M[K]['namespace'] : never;
 }[keyof M];
 
 type Namespaces = GetNamespaces<Models>;
@@ -52,10 +50,7 @@ function Executor(props: ExecutorProps) {
   try {
     data = hook();
   } catch (e) {
-    console.error(
-      `plugin-model: Invoking '${namespace || 'unknown'}' model failed:`,
-      e,
-    );
+    console.error(`plugin-model: Invoking '${namespace || 'unknown'}' model failed:`, e);
   }
 
   // 首次执行时立刻返回初始值
@@ -77,10 +72,7 @@ function Executor(props: ExecutorProps) {
 
 const dispatcher = new Dispatcher();
 
-export function Provider(props: {
-  models: Record<string, any>;
-  children: React.ReactNode;
-}) {
+export function Provider(props: { models: Record<string, any>; children: React.ReactNode }) {
   return (
     <Context.Provider value={{ dispatcher }}>
       {Object.keys(props.models).map((namespace) => {
@@ -114,20 +106,18 @@ type GetModelByNamespace<M, N> = {
 type Model<N> = GetModelByNamespace<Models, N>;
 type Selector<N, S> = (model: Model<N>) => S;
 
-type SelectedModel<N, T> = T extends (...args: any) => any
-  ? ReturnType<NonNullable<T>>
-  : Model<N>;
+type SelectedModel<N, T> = T extends (...args: any) => any ? ReturnType<NonNullable<T>> : Model<N>;
 
 export function useModel<N extends Namespaces>(namespace: N): Model<N>;
 
 export function useModel<N extends Namespaces, S>(
   namespace: N,
-  selector: Selector<N, S>,
+  selector: Selector<N, S>
 ): SelectedModel<N, typeof selector>;
 
 export function useModel<N extends Namespaces, S>(
   namespace: N,
-  selector?: Selector<N, S>,
+  selector?: Selector<N, S>
 ): SelectedModel<N, typeof selector> {
   const { dispatcher } = useContext<{ dispatcher: Dispatcher }>(Context);
   const selectorRef = useRef(selector);
@@ -135,7 +125,7 @@ export function useModel<N extends Namespaces, S>(
   const [state, setState] = useState(() =>
     selectorRef.current
       ? selectorRef.current(dispatcher.data[namespace])
-      : dispatcher.data[namespace],
+      : dispatcher.data[namespace]
   );
   const stateRef = useRef<any>(state);
   stateRef.current = state;
@@ -158,9 +148,7 @@ export function useModel<N extends Namespaces, S>(
           dispatcher.update(namespace);
         });
       } else {
-        const currentState = selectorRef.current
-          ? selectorRef.current(data)
-          : data;
+        const currentState = selectorRef.current ? selectorRef.current(data) : data;
         const previousState = stateRef.current;
         if (!isEqual(currentState, previousState)) {
           // 避免 currentState 拿到的数据是老的，从而导致 isEqual 比对逻辑有问题

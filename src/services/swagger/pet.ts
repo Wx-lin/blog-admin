@@ -7,10 +7,10 @@ export async function updatePet(body: API.Pet, options?: { [key: string]: any })
   return request<any>('/pet', {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     data: body,
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -19,10 +19,10 @@ export async function addPet(body: API.Pet, options?: { [key: string]: any }) {
   return request<any>('/pet', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     data: body,
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -30,13 +30,13 @@ export async function addPet(body: API.Pet, options?: { [key: string]: any }) {
 export async function getPetById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getPetByIdParams,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   const { petId: param0, ...queryParams } = params;
   return request<API.Pet>(`/pet/${param0}`, {
     method: 'GET',
     params: { ...queryParams },
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -45,7 +45,7 @@ export async function updatePetWithForm(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.updatePetWithFormParams,
   body: { name?: string; status?: string },
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   const { petId: param0, ...queryParams } = params;
   const formData = new FormData();
@@ -56,7 +56,7 @@ export async function updatePetWithForm(
     if (item !== undefined && item !== null) {
       formData.append(
         ele,
-        typeof item === 'object' && !(item instanceof File) ? JSON.stringify(item) : item,
+        typeof item === 'object' && !(item instanceof File) ? JSON.stringify(item) : item
       );
     }
   });
@@ -65,7 +65,7 @@ export async function updatePetWithForm(
     method: 'POST',
     params: { ...queryParams },
     data: formData,
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -76,14 +76,14 @@ export async function deletePet(
     // header
     api_key?: string;
   },
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   const { petId: param0, ...queryParams } = params;
   return request<any>(`/pet/${param0}`, {
     method: 'DELETE',
     headers: {},
     params: { ...queryParams },
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -93,7 +93,7 @@ export async function uploadFile(
   params: API.uploadFileParams,
   body: { additionalMetadata?: string; file?: string },
   file?: File,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   const { petId: param0, ...queryParams } = params;
   const formData = new FormData();
@@ -108,7 +108,7 @@ export async function uploadFile(
     if (item !== undefined && item !== null) {
       formData.append(
         ele,
-        typeof item === 'object' && !(item instanceof File) ? JSON.stringify(item) : item,
+        typeof item === 'object' && !(item instanceof File) ? JSON.stringify(item) : item
       );
     }
   });
@@ -118,7 +118,7 @@ export async function uploadFile(
     params: { ...queryParams },
     data: formData,
     requestType: 'form',
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -126,14 +126,14 @@ export async function uploadFile(
 export async function findPetsByStatus(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.findPetsByStatusParams,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   return request<API.Pet[]>('/pet/findByStatus', {
     method: 'GET',
     params: {
-      ...params,
+      ...params
     },
-    ...(options || {}),
+    ...(options || {})
   });
 }
 
@@ -141,13 +141,13 @@ export async function findPetsByStatus(
 export async function findPetsByTags(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.findPetsByTagsParams,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   return request<API.Pet[]>('/pet/findByTags', {
     method: 'GET',
     params: {
-      ...params,
+      ...params
     },
-    ...(options || {}),
+    ...(options || {})
   });
 }
