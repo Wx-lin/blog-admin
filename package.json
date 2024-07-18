@@ -6,14 +6,9 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=1 max build",
     "build": "max build",
-    "deploy": "npm run build && npm run gh-pages",
     "dev": "npm run start:dev",
     "gh-pages": "gh-pages -d dist",
-    "i18n-remove": "pro i18n-remove --locale=zh-CN --write",
-    "postinstall": "max setup",
-    "jest": "jest",
     "lint": "npm run lint:js && npm run lint:prettier && npm run tsc",
-    "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src ",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
@@ -22,23 +17,22 @@
     "prepare": "husky install",
     "prettier": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "preview": "npm run build && max preview --port 8000",
-    "record": "cross-env NODE_ENV=development REACT_APP_ENV=test max record --scene=login",
     "serve": "umi-serve",
     "start": "cross-env UMI_ENV=dev max dev",
     "start:dev": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev",
-    "start:no-mock": "cross-env MOCK=none UMI_ENV=dev max dev",
-    "start:pre": "cross-env REACT_APP_ENV=pre UMI_ENV=dev max dev",
-    "start:test": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev max dev",
-    "test": "jest",
-    "test:coverage": "npm run jest -- --coverage",
-    "test:update": "npm run jest -- -u",
-    "tsc": "tsc --noEmit"
+    "start:no-mock": "cross-env MOCK=none UMI_ENV=dev max dev"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
-    "**/*.{js,jsx,tsx,ts,less,md,json}": ["prettier --write"]
+    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+      "prettier --write"
+    ]
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 10"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ],
   "dependencies": {
     "@ant-design/icons": "^4.8.1",
     "@ant-design/pro-components": "^2.6.48",
@@ -79,7 +73,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^10.5.4",
     "mockjs": "^1.1.0",
-    "prettier": "^2.8.8",
+    "prettier": "3.3.3",
     "react-dev-inspector": "^1.9.0",
     "swagger-ui-dist": "^4.19.1",
     "ts-node": "^10.9.2",
@@ -87,5 +81,7 @@
     "umi-presets-pro": "^2.0.3",
     "umi-serve": "^1.9.11"
   },
-  "engines": { "node": ">=12.0.0" }
+  "engines": {
+    "node": ">=12.0.0"
+  }
 }
