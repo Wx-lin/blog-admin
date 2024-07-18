@@ -11,7 +11,8 @@ import { createPluginManager } from './core/plugin';
 import { createHistory } from './core/history';
 import { ApplyPluginsType } from 'umi';
 
-const publicPath = '/';
+
+const publicPath = "/";
 const runtimePublicPath = false;
 
 async function render() {
@@ -24,14 +25,14 @@ async function render() {
     type: ApplyPluginsType.event,
     args: {
       routes,
-      routeComponents
-    }
+      routeComponents,
+    },
   });
 
   const contextOpts = pluginManager.applyPlugins({
     key: 'modifyContextOpts',
     type: ApplyPluginsType.modify,
-    initialValue: {}
+    initialValue: {},
   });
 
   const basename = contextOpts.basename || '/';
@@ -40,10 +41,10 @@ async function render() {
   const history = createHistory({
     type: historyType,
     basename,
-    ...contextOpts.historyOpts
+    ...contextOpts.historyOpts,
   });
 
-  return pluginManager.applyPlugins({
+  return (pluginManager.applyPlugins({
     key: 'render',
     type: ApplyPluginsType.compose,
     initialValue() {
@@ -58,24 +59,24 @@ async function render() {
         history,
         historyType,
         basename,
-        __INTERNAL_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: { pureApp: false, pureHtml: false },
-        callback: contextOpts.callback
+        __INTERNAL_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: {"pureApp":false,"pureHtml":false},
+        callback: contextOpts.callback,
       };
       const modifiedContext = pluginManager.applyPlugins({
         key: 'modifyClientRenderOpts',
         type: ApplyPluginsType.modify,
-        initialValue: context
+        initialValue: context,
       });
       return renderClient(modifiedContext);
-    }
-  })();
+    },
+  }))();
 }
 
-import './plugin-moment2dayjs/runtime.tsx';
+import './plugin-moment2dayjs/runtime.tsx'
 render();
 
-if (typeof window !== 'undefined') {
-  window.g_umi = {
-    version: '4.3.6'
-  };
-}
+    if (typeof window !== 'undefined') {
+      window.g_umi = {
+        version: '4.3.6',
+      };
+    }

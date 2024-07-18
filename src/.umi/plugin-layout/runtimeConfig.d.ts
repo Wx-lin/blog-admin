@@ -2,5 +2,5 @@
 // DO NOT CHANGE IT MANUALLY!
 import type { RunTimeLayoutConfig } from './types.d';
 export interface IRuntimeConfig {
-  layout?: RunTimeLayoutConfig;
+  layout?: RunTimeLayoutConfig
 }

@@ -4,6 +4,9 @@ type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
 
-type AntdConfig = Prettify<{}>;
+type AntdConfig = Prettify<{}
+
+
+>;
 
 export type RuntimeAntdConfig = (memo: AntdConfig) => AntdConfig;

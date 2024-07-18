@@ -9,7 +9,7 @@ export type InitialStateType = Awaited<ReturnType<typeof getInitialState>> | und
 const initState = {
   initialState: undefined as InitialStateType,
   loading: true,
-  error: undefined
+  error: undefined,
 };
 
 export default () => {
@@ -26,7 +26,7 @@ export default () => {
 
   const setInitialState = useCallback(
     async (
-      initialState: InitialStateType | ((initialState: InitialStateType) => InitialStateType)
+      initialState: InitialStateType | ((initialState: InitialStateType) => InitialStateType),
     ) => {
       setState((s) => {
         if (typeof initialState === 'function') {
@@ -35,7 +35,7 @@ export default () => {
         return { ...s, initialState, loading: false };
       });
     },
-    []
+    [],
   );
 
   useEffect(() => {
@@ -45,6 +45,6 @@ export default () => {
   return {
     ...state,
     refresh,
-    setInitialState
+    setInitialState,
   };
-};
+}

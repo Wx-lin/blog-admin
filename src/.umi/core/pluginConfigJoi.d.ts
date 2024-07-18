@@ -3,51 +3,47 @@
 // Created by Umi Plugin
 
 export interface IConfigFromPluginsJoi {
-  openAPI?:
-    | {
-        requestLibPath?: string;
-        schemaPath?: string;
-        mock?: boolean;
-        projectName?: string;
-        apiPrefix?: string | (() => any);
-        namespace?: string;
-        hook?: {
-          customFunctionName?: () => any;
-          customClassName?: () => any;
-        };
-      }[]
-    | {
-        requestLibPath?: string;
-        schemaPath?: string;
-        mock?: boolean;
-        projectName?: string;
-        apiPrefix?: string | (() => any);
-        namespace?: string;
-        hook?: {
-          customFunctionName?: () => any;
-          customClassName?: () => any;
-        };
-      };
-  keepalive?: unknown[];
-  tabsLayout?:
-    | boolean
-    | {
-        hasCustomTabs?: boolean;
-        hasDropdown?: boolean;
-        hasFixedHeader?: boolean;
-      };
-  requestRecord?: {
-    exclude?: unknown[];
-    type?: boolean;
-    namespace?: string;
-    comment?: boolean;
-    outputDir?: string;
-    successFilter?: () => any;
-    role?: string;
-    mock?: {
-      outputDir?: string;
-      fileName?: string;
-      usingRole?: string;
-    };
-  };
+openAPI?: ({
+requestLibPath?: string
+schemaPath?: string
+mock?: boolean
+projectName?: string
+apiPrefix?: (string | (() => any))
+namespace?: string
+hook?: {
+customFunctionName?: (() => any)
+customClassName?: (() => any)
+}
+}[] | {
+requestLibPath?: string
+schemaPath?: string
+mock?: boolean
+projectName?: string
+apiPrefix?: (string | (() => any))
+namespace?: string
+hook?: {
+customFunctionName?: (() => any)
+customClassName?: (() => any)
+}
+})
+keepalive?: unknown[]
+tabsLayout?: (boolean | {
+hasCustomTabs?: boolean
+hasDropdown?: boolean
+hasFixedHeader?: boolean
+})
+requestRecord?: {
+exclude?: unknown[]
+type?: boolean
+namespace?: string
+comment?: boolean
+outputDir?: string
+successFilter?: (() => any)
+role?: string
+mock?: {
+outputDir?: string
+fileName?: string
+usingRole?: string
+}
+}
 }

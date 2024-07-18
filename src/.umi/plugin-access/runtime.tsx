@@ -11,9 +11,13 @@ function Provider(props) {
   const { initialState } = useModel('@@initialState');
   const access = React.useMemo(() => accessFactory(initialState), [initialState]);
 
-  return <AccessContext.Provider value={access}>{props.children}</AccessContext.Provider>;
+  return (
+    <AccessContext.Provider value={access}>
+      { props.children }
+    </AccessContext.Provider>
+  );
 }
 
 export function accessProvider(container) {
-  return <Provider>{container}</Provider>;
+  return <Provider>{ container }</Provider>;
 }

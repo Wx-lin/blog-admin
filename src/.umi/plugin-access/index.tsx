@@ -18,7 +18,7 @@ export const Access: React.FC<PropsWithChildren<AccessProps>> = (props) => {
     throw new Error('[access] the `accessible` property on <Access /> should be a boolean');
   }
 
-  return <>{props.accessible ? props.children : props.fallback}</>;
+  return <>{ props.accessible ? props.children : props.fallback }</>;
 };
 
 export const useAccessMarkedRoutes = (routes: IRoute[]) => {
@@ -78,10 +78,10 @@ export const useAccessMarkedRoutes = (routes: IRoute[]) => {
       }
 
       return route;
-    };
+    }
 
-    return routes.map((route) => process(route));
+    return routes.map(route => process(route));
   }, [routes.length, access]);
 
   return markdedRoutes;
-};
+}
