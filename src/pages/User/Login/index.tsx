@@ -11,28 +11,6 @@ import Settings from "../../../../config/defaultSettings";
 
 const useStyles = createStyles(({ token }) => {
   return {
-    action: {
-      marginLeft: "8px",
-      color: "rgba(0, 0, 0, 0.2)",
-      fontSize: "24px",
-      verticalAlign: "middle",
-      cursor: "pointer",
-      transition: "color 0.3s",
-      "&:hover": {
-        color: token.colorPrimaryActive,
-      },
-    },
-    lang: {
-      width: 42,
-      height: 42,
-      lineHeight: "42px",
-      position: "fixed",
-      right: 16,
-      borderRadius: token.borderRadius,
-      ":hover": {
-        backgroundColor: token.colorBgTextHover,
-      },
-    },
     container: {
       display: "flex",
       flexDirection: "column",
@@ -45,10 +23,6 @@ const useStyles = createStyles(({ token }) => {
   };
 });
 
-const Lang = () => {
-  const { styles } = useStyles();
-  return;
-};
 const LoginMessage: React.FC<{
   content: string;
 }> = ({ content }) => {
@@ -90,20 +64,15 @@ const Login: React.FC = () => {
         type,
       });
       if (msg.status === "ok") {
-        const defaultLoginSuccessMessage = "登录成功！";
-        message.success(defaultLoginSuccessMessage);
+        message.success("登录成功！");
         await fetchUserInfo();
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get("redirect") || "/");
         return;
       }
-      console.log(msg);
-      // 如果失败去设置用户错误信息
       setUserLoginState(msg);
     } catch (error) {
-      const defaultLoginFailureMessage = "登录失败，请重试！";
-      console.log(error);
-      message.error(defaultLoginFailureMessage);
+      message.error("登录失败，请重试！");
     }
   };
   const { status, type: loginType } = userLoginState;
@@ -114,7 +83,6 @@ const Login: React.FC = () => {
           {"登录"}- {Settings.title}
         </title>
       </Helmet>
-      <Lang />
       <div
         style={{
           flex: "1",
@@ -129,9 +97,6 @@ const Login: React.FC = () => {
           logo={<img alt="logo" src="/logo.svg" />}
           title="博客后台管理系统"
           subTitle={"Ant Design 是西湖区最具影响力的 Web 设计规范"}
-          initialValues={{
-            autoLogin: true,
-          }}
           onFinish={async (values) => {
             await handleSubmit(values as API.LoginParams);
           }}
